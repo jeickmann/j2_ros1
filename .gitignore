@@ -1,0 +1,9 @@
+.catkin_workspace
+build/
+install/
+devel/
+src/j2_controller/cfg/Robby.cert.pem
+src/j2_controller/cfg/Robby.private.key
+src/j2_controller/cfg/Robby.public.key
+src/j2_controller/cfg/root-CA.crt
+src/CMakeLists.txt

@@ -1,0 +1,28 @@
+<launch>
+  <!--include file="$(find jimmy_drive)/launch/jimmy_drive.launch" pass_all_args="true" />-->
+
+  <param name="robot_description" textfile="$(find j2_controller)/urdf/j2.urdf"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+  </node>
+
+  <node pkg="j2_controller" type="controller.py" name="j2controller">
+  </node>
+
+  <node pkg="joy" type="joy_node" name="joy_node">
+  </node>
+
+  <node pkg="teleop_twist_joy" type="teleop_node" name="teleop">
+    <param name="axis_linear.x" value="1"/>
+    <param name="axis_angular.yaw" value="3"/>
+    <param name="scale_linear.x" value="0.5"/>
+    <param name="scale_angular.yaw" value="1.5"/>
+    <param name="enable_button" value="5"/>
+  </node>
+  <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
+    <param name="serial_port"         type="string" value="/dev/ttyS0"/>
+    <param name="serial_baudrate"     type="int"    value="115200"/>
+    <param name="frame_id"            type="string" value="laser_link"/>
+    <param name="inverted"            type="bool"   value="false"/>
+    <param name="angle_compensate"    type="bool"   value="true"/>
+  </node>
+</launch>
